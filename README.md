@@ -9,6 +9,7 @@ plugins are created by functions that return objects with `name` and lifecycle h
 - ✅ Quartz-compatible transformer/filter/emitter examples
 - ✅ TypeScript-first with exported types for consumers
 - ✅ `tsup` bundling + declaration output
+- ✅ Pre-built `dist/` ships in the repo — instant installation for users
 - ✅ Vitest testing setup with example tests
 - ✅ Linting/formatting with ESLint + Prettier
 - ✅ CI workflow for checks and npm publishing
@@ -21,6 +22,17 @@ npm install
 npm run build
 ```
 
+> [!important]
+> After building, the `dist/` directory should be committed to the repository. It is not gitignored, as Quartz uses it for pre-built distribution.
+
+## Build and Distribution
+
+The template is configured to bundle all dependencies by default via `noExternal: [/.*/]` in `tsup.config.ts`. This ensures that users don't need to install any dependencies when using your plugin.
+
+- **Singleton Externals**: Certain packages (`preact`, `vfile`, `unified`, `@jackyzha0/quartz`) are kept external to ensure only one instance of them exists across all plugins.
+- **Native Dependencies**: If your plugin uses native dependencies (like `sharp`, `@napi-rs/simple-git`, etc.), you must exclude them from bundling. Use a regex pattern in `noExternal` to exclude them, for example: `noExternal: [/^(?!sharp)/]`.
+- **CI Verification**: The included CI workflow verifies that `dist/` is up to date on every push.
+
 ## Usage in Quartz
 
 Install your plugin into a Quartz v5 site:
@@ -29,21 +41,25 @@ Install your plugin into a Quartz v5 site:
 npx quartz plugin add github:quartz-community/plugin-template
 ```
 
-Then register it in `quartz.config.ts`:
+Then register it in `quartz.config.yaml`:
+
+```yaml
+plugins:
+  - source: github:quartz-community/plugin-template
+    enabled: true
+    options:
+      highlightToken: "=="
+```
+
+If you need to use the plugin in `quartz.ts` for advanced overrides:
 
 ```ts
 import * as ExternalPlugin from "./.quartz/plugins";
 
 export default {
-  configuration: {
-    pageTitle: "My Garden",
-  },
   plugins: {
     transformers: [ExternalPlugin.ExampleTransformer({ highlightToken: "==" })],
-    filters: [ExternalPlugin.ExampleFilter({ allowDrafts: false })],
-    emitters: [ExternalPlugin.ExampleEmitter({ manifestSlug: "plugin-manifest" })],
   },
-  externalPlugins: ["github:quartz-community/plugin-template"],
 };
 ```
 
