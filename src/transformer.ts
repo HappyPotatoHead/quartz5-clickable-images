@@ -156,8 +156,8 @@ export const ClickableImages: QuartzTransformerPlugin<Options> = (userOpts?: Opt
   background: rgba(0, 0, 0, 0.8);
 }
 
-body.lightbox-open {
-  overflow: hidden;
+html.lightbox-open {
+  overflow: hidden !important;
 }
 
 @media (max-width: 768px){
@@ -214,6 +214,7 @@ body.lightbox-open {
       captionEl.style.display = caption ? 'block' : 'none';
       modal.classList.add('active');
       document.body.classList.add('lightbox-open');
+      document.documentElement.classList.add('lightbox-open');
  
       var preloadImg = new Image();
       preloadImg.onload = function () {
@@ -263,6 +264,7 @@ body.lightbox-open {
         modalImg.style.display = 'none';
         modalImg.src = '';
       }, 300);
+      document.documentElement.classList.remove('lightbox-open');
     }
  
     closeBtn.addEventListener('click', closeLightbox);
@@ -291,6 +293,7 @@ body.lightbox-open {
       window.addCleanup(function () {
         if (modal && modal.parentNode) modal.parentNode.removeChild(modal);
         document.body.classList.remove('lightbox-open');
+        document.documentElement.classList.remove('lightbox-open');
       });
     }
   }
