@@ -280,7 +280,7 @@ body.lightbox-open {
         e.preventDefault();
         var img = wrapper.querySelector('.lightbox-image');
         if (img) {
-          var src = img.getAttribute('data-src') || img.src;
+          var src = img.src || img.getAttribute('data-src');
           var caption = img.getAttribute('data-caption') || '';
           openLightbox(src, caption, img);
         }
