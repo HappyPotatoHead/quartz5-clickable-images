@@ -1,14 +1,14 @@
 {
-  "name": "@quartz-community/plugin-template",
+  "name": "quartz-plugin-clickable-images",
   "version": "0.1.0",
-  "description": "Template repository for Quartz community plugins.",
+  "description": "Lightbox zoom for images in Quartz v5",
   "type": "module",
   "license": "MIT",
-  "author": "Quartz Community",
-  "homepage": "https://quartz.jzhao.xyz",
+  "author": "HappyPotatoHead",
+  "homepage": "https://github.com/HappyPotatoHead/quartz-plugin-clickable-images",
   "repository": {
     "type": "git",
-    "url": "https://github.com/quartz-community/plugin-template"
+    "url": "https://github.com/HappyPotatoHead/quartz-plugin-clickable-images"
   },
   "keywords": [
     "quartz",
@@ -29,14 +29,6 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
-    },
-    "./types": {
-      "types": "./dist/types.d.ts",
-      "import": "./dist/types.js"
-    },
-    "./components": {
-      "types": "./dist/components/index.d.ts",
-      "import": "./dist/components/index.js"
     },
     "./package.json": "./package.json"
   },
@@ -76,13 +68,8 @@
     "@typescript-eslint/parser": "^7.18.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
-    "github-slugger": "^2.0.0",
-    "hast-util-to-jsx-runtime": "^2.3.6",
-    "mdast-util-find-and-replace": "^3.0.2",
     "preact": "^10.28.2",
     "prettier": "^3.6.2",
-    "rehype-slug": "^6.0.0",
-    "remark-gfm": "^4.0.1",
     "remark-parse": "^11.0.0",
     "remark-stringify": "^11.0.0",
     "sass": "^1.97.3",
@@ -90,27 +77,31 @@
     "typescript": "^5.9.3",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.1.0",
-    "vfile": "^6.0.3",
-    "vitest": "^2.1.9"
+    "vfile": "^6.0.3"
   },
   "quartz": {
-    "name": "plugin-template",
-    "displayName": "Plugin Template",
+    "name": "clickable-images",
+    "displayName": "Clickable Images",
     "category": "transformer",
     "version": "1.0.0",
     "quartzVersion": ">=5.0.0",
     "dependencies": [],
     "defaultOrder": 50,
     "defaultEnabled": true,
-    "defaultOptions": {},
+    "defaultOptions": {
+      "minScaleFactor": 1.5,
+      "maxScaleFactor": 3,
+      "borderRadius": "8px"
+    },
     "optionSchema": {
-      "highlightToken": {
-        "type": "enum",
-        "values": [
-          "==",
-          "**",
-          "~~"
-        ]
+      "minScaleFactor": {
+        "type": "number"
+      },
+      "maxScaleFactor": {
+        "type": "number"
+      },
+      "borderRadius": {
+        "type": "string"
       }
     },
     "components": {
