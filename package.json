@@ -101,13 +101,6 @@
       "borderRadius": {
         "type": "string"
       }
-    },
-    "components": {
-      "ExampleComponent": {
-        "displayName": "Example Component",
-        "defaultPosition": "right",
-        "defaultPriority": 50
-      }
     }
   },
   "engines": {
