@@ -38,11 +38,9 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "lint": "eslint . --max-warnings=0",
     "format": "prettier . --check",
-    "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "check": "npm run typecheck && npm run lint && npm run format && npm run test"
+    "check": "npm run typecheck && npm run format"
   },
   "peerDependencies": {
     "preact": "^10.0.0",

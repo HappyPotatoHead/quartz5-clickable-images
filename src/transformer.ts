@@ -2,7 +2,7 @@ import type { PluggableList, Plugin } from "unified";
 import type { Root as HashRoot, Element } from "hast";
 import type { QuartzTransformerPlugin } from "@quartz-community/types";
 import type { Options } from "./types";
-import {defaultOptions} from "./types";
+import { defaultOptions } from "./types";
 
 import { visit } from "unist-util-visit";
 
@@ -179,8 +179,7 @@ body.lightbox-open {
           {
             contentType: "inline",
             loadTime: "afterDOMReady",
-            script: 
-`(function () {
+            script: `(function () {
   var MIN_SCALE = ${opts.minScaleFactor};
   var MAX_SCALE = ${opts.maxScaleFactor};
  
@@ -305,8 +304,8 @@ body.lightbox-open {
   }
 })();
 `,
-          }
-        ]
+          },
+        ],
       };
     },
   };
