@@ -1,4 +1,3 @@
-https://github.com/user-attachments/assets/0e2095b8-408e-4446-b357-6608751c8089
 this plugin was originally made by [vazome](https://github.com/vazome/quartz-clickable-images-zoom-plugin) for Quartz4
 
 i adapted this plugin for Quartz5
